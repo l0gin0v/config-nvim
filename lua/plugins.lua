@@ -128,4 +128,19 @@ require('lazy').setup({
       require('luasnip.loaders.from_vscode').lazy_load()
     end
   },
+
+  {
+    'lcroberts/persistent-colorscheme.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      colorscheme = 'github',
+    },
+  },
+
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6',
+    lazy = false,
+  },
 })

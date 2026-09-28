@@ -14,6 +14,25 @@ vim.keymap.set('n', '<F8>', ':TagbarToggle<CR>')
 -- Настройка Python (аналог let g:python3_host_prog)
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+-- Настройка Rust (через плагин rustaceanvim)
+vim.g.rustaceanvim = {
+  server = {
+    default_settings = {
+      ['rust_analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
+        cargo = {
+          allFeatures = true,
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    },
+  },
+}
+
 -- ========== LSP НАСТРОЙКИ ==========
 local lspconfig = require('lspconfig')
 
@@ -85,24 +104,6 @@ lspconfig.pyright.setup({
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true
       }
-    }
-  }
-})
-
--- LSP для Rust
-lspconfig.rust_analyzer.setup({
-  capabilities = capabilities,
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = true,
-      },
-      cargo = {
-        loadOutDirsFromCheck = true
-      },
-      procMacro = {
-        enable = true
-      },
     }
   }
 })
