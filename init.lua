@@ -7,8 +7,10 @@ require('options')
 require('plugins')
 
 -- Клавиши для плагинов
-vim.keymap.set('n', '<C-n>', ':NERDTree<CR>')
-vim.keymap.set('n', '<C-t>', ':NERDTreeToggle<CR>')
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Перейти в левое окно' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Перейти в нижнее окно' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Перейти в верхнее окно' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Перейти в правое окно' })
 vim.keymap.set('n', '<F8>', ':TagbarToggle<CR>')
 
 -- Настройка Python (аналог let g:python3_host_prog)
