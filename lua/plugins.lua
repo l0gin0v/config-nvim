@@ -126,12 +126,27 @@ require('lazy').setup({
     main = "ibl",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      vim.api.nvim_set_hl(0, "CustomIndentColor", { fg = "#2a2f41" })
+      local hooks = require("ibl.hooks")
+
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "CustomIndentColor", { fg = "#2a2f41" })
+      end)
 
       require("ibl").setup({
         indent = {
           char = "│",
           highlight = "CustomIndentColor",
+        },
+        scope = {
+          enabled = true,
+          show_start = false,
+          show_end = false,
+        },
+        whitespace = {
+          remove_blankline_trail = false,
+        },
+        exclude = {
+          filetypes = { "help", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
         },
       })
     end

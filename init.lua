@@ -36,7 +36,6 @@ vim.g.rustaceanvim = {
 }
 
 -- ========== LSP НАСТРОЙКИ ==========
-local lspconfig = require('lspconfig')
 
 -- Автокоманды для LSP
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -84,7 +83,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP для C/C++
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
   capabilities = capabilities,
   cmd = {
     "clangd",
@@ -95,9 +94,10 @@ lspconfig.clangd.setup({
   },
   filetypes = {"c", "cpp", "objc", "objcpp"},
 })
+vim.lsp.enable('clangd')
 
 -- LSP для Python
-lspconfig.pyright.setup({
+vim.lsp.config('pyright', {
   capabilities = capabilities,
   settings = {
     python = {
@@ -109,3 +109,4 @@ lspconfig.pyright.setup({
     }
   }
 })
+vim.lsp.enable('pyright')
