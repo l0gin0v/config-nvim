@@ -6,6 +6,8 @@ require('options')
 -- Загрузка настроек плагинов  
 require('plugins')
 
+vim.opt.termguicolors = true
+
 -- Клавиши для плагинов
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Перейти в левое окно' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Перейти в нижнее окно' })
@@ -110,3 +112,42 @@ vim.lsp.config('pyright', {
   }
 })
 vim.lsp.enable('pyright')
+
+-- LSP для C#
+vim.lsp.config('omnisharp', {
+  capabilities = capabilities,
+  settings = {
+    FormattingOptions = {
+      EnableEditorConfigSupport = true,
+    },
+    MsBuild = {
+      LoadProjectsOnDemand = true,
+    },
+    RoslynExtensionsOptions = {
+      EnableAnalyzersSupport = true,
+      EnableImportCompletion = true,
+    },
+  },
+})
+vim.lsp.enable('omnisharp')
+
+-- LSP для Go
+vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_markers = { 'go.work', 'go.mod', '.git' },
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+      completeUnimported = true,
+      usePlaceholders = true,
+    },
+  },
+})
+vim.lsp.enable('gopls')

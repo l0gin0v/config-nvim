@@ -22,6 +22,13 @@ require('lazy').setup({
   'preservim/tagbar',
 
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
+  {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
@@ -194,7 +201,7 @@ require('lazy').setup({
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = {'clangd', 'pyright', 'rust_analyzer'}
+        ensure_installed = {'clangd', 'pyright', 'rust_analyzer', 'omnisharp', 'gopls'}
       })
     end
   },
