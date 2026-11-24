@@ -49,7 +49,7 @@ require('lazy').setup({
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/noice.nvim' },
     config = function()
       require('lualine').setup {
         options = {
@@ -191,9 +191,11 @@ require('lazy').setup({
   -- Менеджер LSP серверов
   {
     'williamboman/mason.nvim',
-    config = function()
-      require('mason').setup()
-    end
+    opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+      },
+    },
   },
 
   -- Мост между Mason и LSPConfig
@@ -201,7 +203,7 @@ require('lazy').setup({
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = {'clangd', 'pyright', 'rust_analyzer', 'omnisharp', 'gopls'}
+        ensure_installed = {'clangd', 'pyright', 'rust_analyzer', 'roslyn_ls', 'gopls'}
       })
     end
   },
@@ -301,7 +303,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Поиск по всем горячим клавишам' })
     end
   },
-
   -- Snippets
   {
     'L3MON4D3/LuaSnip',
